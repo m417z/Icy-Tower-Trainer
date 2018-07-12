@@ -1,37 +1,7 @@
-/* BASSMOD 2.0 C/C++ header file, copyright (c) 1999-2004 Ian Luck.
-   Please report bugs/suggestions/etc... to bassmod@un4seen.com
+#ifndef _BASSMOD_H_
+#define _BASSMOD_H_
 
-   See the BASSMOD.CHM/PDF file for more complete documentation */
-
-#ifndef BASSMOD_H
-#define BASSMOD_H
-
-#ifdef WIN32
-#include <wtypes.h>
-#else
-typedef unsigned char BYTE;
-typedef unsigned short WORD;
-typedef unsigned long DWORD;
-typedef int BOOL;
-#define TRUE 1
-#define FALSE 0
-#define CALLBACK
-#define LOWORD(a) ((a)&0xffff)
-#define HIWORD(a) ((a)>>16)
-#define MAKELONG(a,b) (DWORD)(((a)&0xffff)|((b)<<16))
-#endif
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-#ifndef BASSDEF
-#ifdef WIN32 
-#define BASSDEF(f) WINAPI f
-#else
-#define BASSDEF(f) f
-#endif
-#endif
+#include <windows.h>
 
 typedef DWORD HSYNC;		// synchronizer handle
 
@@ -110,39 +80,16 @@ data   : Additional data associated with the sync's occurance */
 #define BASS_ACTIVE_PLAYING	1
 #define BASS_ACTIVE_PAUSED	3
 
+//extern BOOL (WINAPI* BASSMOD_Init)(int device, DWORD freq, DWORD flags);
+//extern BOOL (WINAPI* BASSMOD_MusicLoad)(BOOL mem, void *file, DWORD offset, DWORD length, DWORD flags);
+extern BOOL (WINAPI* BASSMOD_MusicPlay)();
+extern DWORD (WINAPI* BASSMOD_MusicIsActive)();
+extern BOOL (WINAPI* BASSMOD_MusicPause)();
+extern void (WINAPI* BASSMOD_MusicFree)();
+//extern void (WINAPI* BASSMOD_Free)();
 
-DWORD BASSDEF(BASSMOD_GetVersion)();
-DWORD BASSDEF(BASSMOD_ErrorGetCode)();
-char *BASSDEF(BASSMOD_GetDeviceDescription)(int devnum);
-BOOL BASSDEF(BASSMOD_Init)(int device, DWORD freq, DWORD flags);
-void BASSDEF(BASSMOD_Free)();
-float BASSDEF(BASSMOD_GetCPU)();
-BOOL BASSDEF(BASSMOD_SetVolume)(DWORD volume);
-int BASSDEF(BASSMOD_GetVolume)();
+BOOL LoadBassmod(LPCSTR lpResName, LPCSTR lpResType);
+BOOL LoadBassFile(LPCSTR lpResName, LPCSTR lpResType);
+void FreeBassmod();
 
-BOOL BASSDEF(BASSMOD_MusicLoad)(BOOL mem, void *file, DWORD offset, DWORD length, DWORD flags);
-void BASSDEF(BASSMOD_MusicFree)();
-char *BASSDEF(BASSMOD_MusicGetName)();
-DWORD BASSDEF(BASSMOD_MusicGetLength)(BOOL playlen);
-BOOL BASSDEF(BASSMOD_MusicPlay)();
-BOOL BASSDEF(BASSMOD_MusicPlayEx)(DWORD pos, int flags, BOOL reset);
-DWORD BASSDEF(BASSMOD_MusicDecode)(void *buffer, DWORD length);
-BOOL BASSDEF(BASSMOD_MusicSetAmplify)(DWORD amp);
-BOOL BASSDEF(BASSMOD_MusicSetPanSep)(DWORD pan);
-BOOL BASSDEF(BASSMOD_MusicSetPositionScaler)(DWORD scale);
-BOOL BASSDEF(BASSMOD_MusicSetVolume)(DWORD chanins, DWORD volume);
-DWORD BASSDEF(BASSMOD_MusicGetVolume)(DWORD chanins);
-
-DWORD BASSDEF(BASSMOD_MusicIsActive)();
-BOOL BASSDEF(BASSMOD_MusicStop)();
-BOOL BASSDEF(BASSMOD_MusicPause)();
-BOOL BASSDEF(BASSMOD_MusicSetPosition)(DWORD pos);
-DWORD BASSDEF(BASSMOD_MusicGetPosition)();
-HSYNC BASSDEF(BASSMOD_MusicSetSync)(DWORD type, DWORD param, SYNCPROC *proc, DWORD user);
-BOOL BASSDEF(BASSMOD_MusicRemoveSync)(HSYNC sync);
-
-#ifdef __cplusplus
-}
-#endif
-
-#endif
+#endif // _BASSMOD_H_
