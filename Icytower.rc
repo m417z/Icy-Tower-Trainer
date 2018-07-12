@@ -61,7 +61,7 @@ IDB_BACK                BITMAP  DISCARDABLE     "icy.bmp"
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_ICON1               ICON    DISCARDABLE     "icy.ico"
+IDI_MAINICON            ICON    DISCARDABLE     "icy.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -87,39 +87,28 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 // Dialog
 //
 
-IDD_MAIN DIALOG DISCARDABLE  0, 0, 167, 196
-STYLE DS_MODALFRAME | DS_CENTER | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | 
-    WS_SYSMENU
-CAPTION "Icy Tower +7 Trainer"
+IDD_MAIN DIALOG DISCARDABLE  0, 0, 166, 197
+STYLE DS_CENTER | WS_POPUP | WS_BORDER
 FONT 8, "MS Sans Serif"
 BEGIN
-    CONTROL         102,IDC_STATIC,"Static",SS_BITMAP,0,0,167,197
-    PUSHBUTTON      "iNFO",IDC_INFO,7,174,40,15,BS_FLAT
-    PUSHBUTTON      "Music OFF",IDC_MUSIC,56,174,55,15,BS_FLAT
-    PUSHBUTTON      "Exit",IDC_EXIT,120,174,40,15,BS_FLAT
-    PUSHBUTTON      "Run\nIcy\nTower",IDC_RUN,109,58,30,31,BS_MULTILINE | 
-                    BS_FLAT
+    PUSHBUTTON      "iNFO",IDC_INFO,7,175,40,15,BS_FLAT
+    PUSHBUTTON      "Music OFF",IDC_MUSIC,56,175,55,15,BS_FLAT
+    PUSHBUTTON      "Exit",IDCANCEL,119,175,40,15,BS_FLAT
+    PUSHBUTTON      "Run",IDC_RUN,109,58,30,15,BS_FLAT
+    PUSHBUTTON      "Attach",IDC_FIND,109,74,30,15,BS_FLAT
     CONTROL         "F2 - Freeze World",IDC_F2,"Button",BS_AUTOCHECKBOX | 
-                    BS_PUSHLIKE | BS_FLAT | WS_DISABLED | WS_TABSTOP,27,58,
-                    75,15
+                    BS_PUSHLIKE | BS_FLAT | WS_TABSTOP,27,58,75,15
     CONTROL         "F3 - Super Floor",IDC_F3,"Button",BS_AUTOCHECKBOX | 
-                    BS_PUSHLIKE | BS_FLAT | WS_DISABLED | WS_TABSTOP,27,74,
-                    75,15
-    PUSHBUTTON      "F4 - Unlock Floor ->",IDC_F4,27,90,75,15,BS_FLAT | 
-                    WS_DISABLED
+                    BS_PUSHLIKE | BS_FLAT | WS_TABSTOP,27,74,75,15
+    PUSHBUTTON      "F4 - Unlock Floor ->",IDC_F4,27,90,75,15,BS_FLAT
     EDITTEXT        IDC_LEVEL,109,91,30,12,ES_CENTER | ES_AUTOHSCROLL
-    PUSHBUTTON      "F5 - Change Score ->",IDC_F5,27,106,75,15,BS_FLAT | 
-                    WS_DISABLED
+    PUSHBUTTON      "F5 - Change Score ->",IDC_F5,27,106,75,15,BS_FLAT
     EDITTEXT        IDC_SCORECH,109,107,30,12,ES_CENTER | ES_AUTOHSCROLL
-    PUSHBUTTON      "F6 - Add Score ->",IDC_F6,27,122,75,15,BS_FLAT | 
-                    WS_DISABLED
+    PUSHBUTTON      "F6 - Add Score ->",IDC_F6,27,122,75,15,BS_FLAT
     EDITTEXT        IDC_SCOREADD,109,123,30,12,ES_CENTER | ES_AUTOHSCROLL
-    PUSHBUTTON      "F7 - Create Combo ->",IDC_F7,27,138,75,15,BS_FLAT | 
-                    WS_DISABLED
+    PUSHBUTTON      "F7 - Create Combo ->",IDC_F7,27,138,75,15,BS_FLAT
     EDITTEXT        IDC_CRTCMB,109,139,30,12,ES_CENTER | ES_AUTOHSCROLL
-    CONTROL         "F8 - Change Gravity ->",IDC_F8,"Button",BS_AUTOCHECKBOX | 
-                    BS_PUSHLIKE | BS_FLAT | WS_DISABLED | WS_TABSTOP,27,154,
-                    75,15
+    PUSHBUTTON      "F8 - Change Gravity ->",IDC_F8,27,154,75,15,BS_FLAT
     EDITTEXT        IDC_CHGRA,109,155,30,12,ES_CENTER | ES_AUTOHSCROLL
 END
 
@@ -135,9 +124,9 @@ BEGIN
     IDD_MAIN, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 160
+        RIGHTMARGIN, 159
         TOPMARGIN, 7
-        BOTTOMMARGIN, 189
+        BOTTOMMARGIN, 190
     END
 END
 #endif    // APSTUDIO_INVOKED
